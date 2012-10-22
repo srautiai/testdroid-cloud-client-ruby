@@ -68,10 +68,10 @@ module Testdroid
 		end
 end
 
-#if __FILE__ == $0    
-begin
-	cloud = Testdroid::Cloud.new('sakari.rautiainen@bitbar.com', 'abcde')
-	cloud.authorize
-	puts "end"
+if __FILE__ == $0    
+	begin
+		cloud = Testdroid::Cloud.new('sakari.rautiainen@bitbar.com', 'abcde')
+		cloud.authorize
+		puts "end"
+	end
 end
-#end
