@@ -47,7 +47,7 @@ module Testdroid
 
 			
 				resp = RestClient.get_content(CLOUD_ENDPOINT+"/api/v1/projects", nil, auth_header)
-				return resp
+				resp
 			end
 			def authorize() 
 				body = { "email"=>@username , "password"=>@password}
@@ -66,6 +66,7 @@ module Testdroid
 			end
 		
 		end
+	end
 end
 
 if __FILE__ == $0    
