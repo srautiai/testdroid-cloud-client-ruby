@@ -24,6 +24,7 @@ rescue LoadError => e
   end
 end
 
+
 task :test    => :spec
 task :default => :spec
 
