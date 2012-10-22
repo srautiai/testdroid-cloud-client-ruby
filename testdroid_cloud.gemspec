@@ -5,8 +5,8 @@ require File.expand_path('../lib/testdroid_cloud/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.name          = "testdroid_cloud"
   gem.version       = TestdroidCloud::VERSION
-  gem.summary       = %q{TODO: Summary}
-  gem.description   = %q{TODO: Description}
+  gem.summary       = "Library for running builds in Testdroid Cloud"
+  gem.description   = ""
   gem.license       = "MIT"
   gem.authors       = ["Sakari Rautiainen"]
   gem.email         = "sakari.rautiainen@bitbar.com"
