@@ -2,9 +2,12 @@
 module Testdroid
 	module Cloud
 		class CloudResource
-			def initialize(uri, client, params= {})
-			 @uri, @client = uri, client
+			def initialize(uri, client,  resource_name, params= {})
+			 @uri, @client, @resource_name = uri, client, resource_name
 			 set_up_properties_from( params )
+			end
+			def inspect # :nodoc:
+				"<#{self.class} @uri=#{@uri}>"
 			end
 			def sub_items(*items)
 				items.each do |item|
@@ -15,6 +18,8 @@ module Testdroid
 				  resource_class = Testdroid::Cloud.const_get resource
 				  instance_variable_set( "@#{item}", resource_class.new(uri, @client) )
 				  puts "Projects : #{@projects} - resource_class #{resource_class}"
+				  
+          
 				end
 			end
 			def method_missing(method, *args)
@@ -22,10 +27,11 @@ module Testdroid
 				super if @updated
 				
 				puts "Never here?"	
-				set_up_properties_from(@client.get(@uri))
+				set_up_properties_from(@client.get(@uri,@resource_name))
 				self.send method, *args
 			end
 			def set_up_properties_from(hash)
+				puts "Hash:#{hash}"
 				eigenclass = class << self; self; end
 				hash.each do |p,v|
 				  property = detwilify p
@@ -43,7 +49,7 @@ module Testdroid
 				set_up_properties_from(@client.get(@uri))
 				self
 			end
-			private 
+			 
 			 def twilify(something)
 				if something.is_a? Hash
 				  Hash[*something.to_a.map {|a| [twilify(a[0]).to_sym, a[1]]}.flatten]

@@ -6,7 +6,7 @@ module Testdroid
 
 	module Cloud
 		class Client
-			API_VERSION = '1.0'
+			API_VERSION = 'api/v1'
 			CLOUD_ENDPOINT='https://cloud.testdroid.com'
 			USERS_ENDPOINT='https://users.testdroid.com'
 			def initialize(username, password, cloud_url=CLOUD_ENDPOINT, users_url=USERS_ENDPOINT, api_key = nil)  
@@ -18,10 +18,11 @@ module Testdroid
 				@api_key = api_key
 				
 			end   
-			def get(uri) 
-				  auth_header =  get_auth_header(emailAdd, @api_key ,random_string(), "projects")
-				  puts "#{auth_header} - #{uril} - #{args[0]} - #{args[1]}"
-				  resp = RestClient.get(CLOUD_ENDPOINT+"#{uril}",auth_header)
+			def get(uri, resource_name) 
+				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
+				  puts "#{auth_header} - #{uri} "
+				  
+				  resp = RestClient.get(CLOUD_ENDPOINT+"#{uri}",auth_header)
 				  JSON.parse(resp)
 			  end
 
@@ -33,7 +34,7 @@ module Testdroid
 			end
 			def get_user
 				if (@cloud_user.nil?)
-					@cloud_user = Testdroid::Cloud::User.new( "/#{API_VERSION}/abc", self, authorize() )
+					@cloud_user = Testdroid::Cloud::User.new( "/#{API_VERSION}", self, authorize() )
 				end
 				@cloud_user
 			end

@@ -5,8 +5,10 @@ module Testdroid
 		end
 		class Project < CloudResource
 		
-			def	initiliaze(uri, client, params= {})
-				super uri, client, params
+			def	initialize(uri, client, params= {})
+				
+				super uri, client,"project", params
+				
 				puts "init called #{uri}-#{client}- #{params}"
 				@uri, @client = uri, client
 			end

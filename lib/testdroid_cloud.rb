@@ -12,14 +12,14 @@ require './user.rb'
 
 if __FILE__ == $0    
 	begin
-		cloud = Testdroid::Cloud::Client.new('sakari.rautiainen@bitbar.com', 'abcd')
+		cloud = Testdroid::Cloud::Client.new('sakari.rautiainen@bitbar.com', 'abcde')
 		#cloud.authorize
 		user =  cloud.get_user
 		#puts "user methods"
 		#puts user.methods.sort
-		puts "user all"
-		#puts "IID"+user.instance_variable_get("@projects")
-		puts user.projects
+		#puts "user all"
+		projects = user.projects()
+		puts projects.get(1070071).name
 		puts "end"
 	end
 end
