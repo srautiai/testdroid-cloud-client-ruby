@@ -1,0 +1,27 @@
+= testdroid_cloud
+
+* {Homepage}[https://rubygems.org/gems/testdroid_cloud]
+* {Documentation}[http://rubydoc.info/gems/testdroid_cloud/frames]
+* {Email}[mailto:sakari.rautiainen at bitbar.com]
+
+== Description
+
+TODO: Description
+
+== Features
+
+== Examples
+
+  require 'testdroid_cloud'
+
+== Requirements
+
+== Install
+
+  $ gem install testdroid_cloud
+
+== Copyright
+
+Copyright (c) 2012 Sakari Rautiainen
+
+See LICENSE.txt for details.
