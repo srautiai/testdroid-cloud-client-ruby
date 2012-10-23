@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'testdroid_cloud'
+require 'testdroid-cloud'
 
 describe TestdroidCloud do
   it "should have a VERSION constant" do

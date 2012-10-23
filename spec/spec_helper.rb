@@ -1,6 +1,6 @@
 gem 'rspec', '~> 2.4'
 require 'rspec'
-require 'testdroid_cloud/version'
-require 'testdroid_cloud'
+require 'testdroid-cloud/version'
+require 'testdroid-cloud'
 
 include Testdroid

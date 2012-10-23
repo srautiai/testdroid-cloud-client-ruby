@@ -1,4 +1,4 @@
-= testdroid_cloud
+= testdroid-cloud
 
 * {Homepage}[https://rubygems.org/gems/testdroid_cloud]
 * {Documentation}[http://rubydoc.info/gems/testdroid_cloud/frames]
@@ -12,13 +12,13 @@ TODO: Description
 
 == Examples
 
-  require 'testdroid_cloud'
+  require 'testdroid-cloud'
 
 == Requirements
 
 == Install
 
-  $ gem install testdroid_cloud
+  $ gem install testdroid-cloud
 
 == Copyright
 
