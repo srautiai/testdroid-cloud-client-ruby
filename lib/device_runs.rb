@@ -2,9 +2,6 @@
 module Testdroid
 	module Cloud
 		class DeviceRuns < CloudListResource
-			def	initialize(uri, client, params= {})
-				super uri, client,"device-runs", params
-			end
 		end
 		class DeviceRun < CloudResource
 			def	initialize(uri, client, params= {})
