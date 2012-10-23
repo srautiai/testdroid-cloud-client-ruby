@@ -12,7 +12,7 @@ module Testdroid
 			def sub_items(*items)
 				items.each do |item|
 				  resource = twilify item
-				  uri = "#{@uri}/#{item.gsub('_', '-') }"
+				  uri = "#{@uri}/#{item.to_s.gsub('_', '-') }"
 				  resource_class = Testdroid::Cloud.const_get resource
 				  new_class = resource_class.new(uri, @client)
 				  instance_variable_set( "@#{item}", new_class )
