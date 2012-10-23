@@ -7,9 +7,6 @@ module Testdroid
 				
 				sub_items :projects
 			end
-			def projects()
- 				@projects
- 			end
 		end
   end
 end

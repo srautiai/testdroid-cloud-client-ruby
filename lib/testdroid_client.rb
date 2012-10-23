@@ -20,21 +20,17 @@ module Testdroid
 			end   
 			def get(uri, resource_name) 
 				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
-				  #puts "#{auth_header} - #{uri} "
-				  
 				  resp = RestClient.get(@cloud_url+"#{uri}",auth_header)
 				  JSON.parse(resp)
 			end
 			def post(uri, resource_name, params={}) 
 				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
-				  #puts "#{auth_header} - #{uri} "
 				  auth_header['Accept'] = 'application/json'
 				  begin 
 				  	resp = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",params, auth_header)
 				  rescue => e
 				  	$stderr.puts  e
 				  end
-				  #puts resp
 				  JSON.parse(resp)
 			end
 			def random_string(length=6)
@@ -45,7 +41,7 @@ module Testdroid
 			end
 			def get_user
 				if (@cloud_user.nil?)
-					@cloud_user = Testdroid::Cloud::User.new( "/#{API_VERSION}", self, authorize() )
+					@cloud_user = Testdroid::Cloud::User.new( "/#{API_VERSION}", self, authenticate() )
 				end
 				@cloud_user
 			end
@@ -56,7 +52,7 @@ module Testdroid
 				 {'X-Testdroid-Authentication' => client+" "+nonce+" "+digest}
 			end
 			
-			def authorize() 
+			def authenticate() 
 				body = { "email"=>@username , "password"=>@password}
 				header = { 'Accept' => 'application/json' }
 				resp = RestClient.post(@users_url+"/api/v1/authorize", body, header)

@@ -14,7 +14,7 @@ require './test_run.rb'
 
 if __FILE__ == $0    
 	begin
-		cloud = Testdroid::Cloud::Client.new('admin@localhost', 'ABCDE', 'http://192.168.0.19:9080/testdroid-cloud', 'http://192.168.0.19:9080/testdroid-usermanagement')
+		cloud = Testdroid::Cloud::Client.new('admin@localhost', 'abcde', 'http://82.181.200.141:9080/testdroid-cloud', 'http://82.181.200.141:9080/testdroid-usermanagement')
 		#cloud.authorize
 		user =  cloud.get_user
 		#puts "user methods"

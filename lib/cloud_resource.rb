@@ -14,8 +14,13 @@ module Testdroid
 				  resource = twilify item
 				  uri = "#{@uri}/#{item}"
 				  resource_class = Testdroid::Cloud.const_get resource
-				  instance_variable_set( "@#{item}", resource_class.new(uri, @client) )
+				  puts "Sub Items"
+				  p resource_class
+				  new_class = resource_class.new(uri, @client)
+				  p new_class
+				  instance_variable_set( "@#{item}", new_class )
 				end
+				self.class.instance_eval {attr_reader *items}
 			end
 			def method_missing(method, *args)
 				super if @updated
