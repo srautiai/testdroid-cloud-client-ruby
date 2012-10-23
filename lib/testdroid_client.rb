@@ -30,6 +30,7 @@ module Testdroid
 				  	resp = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",params, auth_header)
 				  rescue => e
 				  	$stderr.puts  e
+				  	return nil
 				  end
 				  JSON.parse(resp)
 			end

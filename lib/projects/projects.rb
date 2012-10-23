@@ -11,7 +11,8 @@ module Testdroid
 				sub_items :config, :runs
 			end
 			def run(instatest=true)
-				@client.post("/projects/#{id}/run", "project/run/#{id}", {instatestMode:true})
+				resp = @client.post("/projects/#{id}/run", "project/run/#{id}", {instatestMode:instatest})
+				Testdroid::Cloud::Run.new("/projects/#{id}/runs/#{resp['id']}", @client, resp)
 			end
 		end
 	end

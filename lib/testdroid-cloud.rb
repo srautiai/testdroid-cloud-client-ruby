@@ -7,10 +7,8 @@ require 'cloud_resource'
 require 'cloud_list_resource'
 require 'projects/projects'
 require 'test_run'
+require 'device_runs'
 require 'config'
 require 'testdroid_client'
 require 'user'
-
-require 'test_run'
-require 'test_run'
 
