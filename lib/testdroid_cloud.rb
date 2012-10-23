@@ -4,13 +4,13 @@
 require 'json'
 require 'rest_client'
 
-require './testdroid_client.rb'
-require './cloud_resource.rb'
-require './cloud_list_resource.rb'
-require './projects/projects.rb'
-require './user.rb'
-require './config.rb'
-require './test_run.rb'
+require 'testdroid_client'
+require 'cloud_resource'
+require 'cloud_list_resource'
+require 'projects/projects'
+require 'user'
+require 'config'
+require 'test_run'
 
 if __FILE__ == $0    
 	begin
