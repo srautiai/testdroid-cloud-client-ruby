@@ -12,26 +12,17 @@ module Testdroid
 			def sub_items(*items)
 				items.each do |item|
 				  resource = twilify item
-				  #relative_uri = r == :sms ? 'SMS' : resource
-				  puts "#{resource} - item: #{item}"
 				  uri = "#{@uri}/#{item}"
 				  resource_class = Testdroid::Cloud.const_get resource
 				  instance_variable_set( "@#{item}", resource_class.new(uri, @client) )
-				  puts "Projects : #{@projects} - resource_class #{resource_class}"
-				  
-          
 				end
 			end
 			def method_missing(method, *args)
-				puts "Logging:#{method} - #{args}"
 				super if @updated
-				
-				puts "Never here?"	
 				set_up_properties_from(@client.get(@uri,@resource_name))
 				self.send method, *args
 			end
 			def set_up_properties_from(hash)
-				puts "Hash:#{hash}"
 				eigenclass = class << self; self; end
 				hash.each do |p,v|
 				  property = detwilify p
@@ -41,8 +32,7 @@ module Testdroid
 				end
 				@updated = !hash.keys.empty?
 			  end
-			# Refresh the attributes of this instance resource object by fetching it
-			# from Twilio. Calling this makes an HTTP GET request to <tt>@uri</tt>.
+			
 			def refresh
 				raise "Can't refresh a resource without a REST Client" unless @client
 				@updated = false

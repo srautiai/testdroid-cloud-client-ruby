@@ -20,12 +20,23 @@ module Testdroid
 			end   
 			def get(uri, resource_name) 
 				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
-				  puts "#{auth_header} - #{uri} "
+				  #puts "#{auth_header} - #{uri} "
 				  
-				  resp = RestClient.get(CLOUD_ENDPOINT+"#{uri}",auth_header)
+				  resp = RestClient.get(@cloud_url+"#{uri}",auth_header)
 				  JSON.parse(resp)
-			  end
-
+			end
+			def post(uri, resource_name, params={}) 
+				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
+				  #puts "#{auth_header} - #{uri} "
+				  auth_header['Accept'] = 'application/json'
+				  begin 
+				  	resp = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",params, auth_header)
+				  rescue => e
+				  	$stderr.puts  e
+				  end
+				  #puts resp
+				  JSON.parse(resp)
+			end
 			def random_string(length=6)
 				chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 				password = ''
@@ -44,24 +55,11 @@ module Testdroid
 
 				 {'X-Testdroid-Authentication' => client+" "+nonce+" "+digest}
 			end
-			def set_up_subresources # :doc:
-				#@user = Twilio::REST::Accounts.new "/#{API_VERSION}/Accounts", self
-				#@account = @accounts.get @account_sid
-			end
-			#Get user projects from testdroid cloud
-			def get_projects() 
-				 
-				
-				 auth_header =  get_auth_header(emailAdd, @api_key ,random_string(), "projects")
-
 			
-				resp = RestClient.get_content(CLOUD_ENDPOINT+"/api/v1/projects", nil, auth_header)
-				resp
-			end
 			def authorize() 
 				body = { "email"=>@username , "password"=>@password}
 				header = { 'Accept' => 'application/json' }
-				resp = RestClient.post(USERS_ENDPOINT+"/api/v1/authorize", body, header)
+				resp = RestClient.post(@users_url+"/api/v1/authorize", body, header)
 				
 				if(resp.nil?) 
 					abort( "No response")
