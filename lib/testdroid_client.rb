@@ -40,7 +40,7 @@ module Testdroid
 				  
 				digest = Digest::MD5.hexdigest(File.read(filename))
 				
-				auth_header = get_auth_header(@username, @api_key ,random_string(),  "upload" + u_id + "application" + digest)	
+				auth_header = get_auth_header(@username, @api_key ,random_string(),  "upload#{u_id}application#{digest}")	
 				auth_header['Accept'] = 'application/json'
 				auth_header['X-Testdroid-MD5'] = digest
 				begin 
