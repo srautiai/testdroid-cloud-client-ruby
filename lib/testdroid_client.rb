@@ -36,6 +36,21 @@ module Testdroid
 				  end
 				  JSON.parse(resp)
 			end
+			def upload(uri,u_id, filename) 
+				  
+				digest = Digest::MD5.hexdigest(File.read(filename))
+				
+				auth_header = get_auth_header(@username, @api_key ,random_string(),  "upload" + u_id + "application" + digest))	
+				auth_header['Accept'] = 'application/json'
+				auth_header['X-Testdroid-MD5'] = digest
+				begin 
+					response = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",  {:file => File.new('filename'), :multipart => true,  }, auth_header)
+				 rescue => e
+				  	$stderr.puts  e
+				  	return nil
+				end
+				JSON.parse(response)
+			end
 			def random_string(length=6)
 				chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 				password = ''

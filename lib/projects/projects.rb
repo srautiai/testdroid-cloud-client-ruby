@@ -19,8 +19,7 @@ module Testdroid
 					$stderr.puts "Invalid filename"
 					return
 				end
-				digest = Digest::MD5.hexdigest(File.read(filename))
-				@client.post "/projects/#{id}/apks/application",  {:file => File.new(filename), :multipart => true,  }, {:'X-Testdroid-MD5' => digest}
+				@client.upload("/projects/#{id}/apks/application",id, filename) 
 			end
 		end
 	end
