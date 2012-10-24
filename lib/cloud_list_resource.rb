@@ -7,7 +7,7 @@ module Testdroid
 				@uri, @client = uri, client
 				resource_name = self.class.name.split('::')[-1]
 				@instance_class = Testdroid::Cloud.const_get resource_name.chop
-				@list_key, @instance_id_key = resource_name.downcase, 'id'
+				@list_key, @instance_id_key = resource_name.gsub!(/\b\w/) { $&.downcase } , 'id'
 			end
 			def get(resource_id)
 				@instance_class.new( "#{@uri}/#{resource_id}", @client)
