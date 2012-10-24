@@ -44,7 +44,7 @@ module Testdroid
 				auth_header['Accept'] = 'application/json'
 				auth_header['X-Testdroid-MD5'] = digest
 				begin 
-					response = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",  {:file => File.new('filename'), :multipart => true,  }, auth_header)
+					response = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",  {:file => File.new(filename), :multipart => true,  }, auth_header)
 				 rescue => e
 				  	$stderr.puts  e
 				  	return nil
