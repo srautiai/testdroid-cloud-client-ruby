@@ -17,8 +17,10 @@ module Testdroid
 				@users_url = users_url
 				@api_key = api_key
 				
+				
 			end   
 			def get(uri, resource_name) 
+				
 				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
 				  resp = RestClient.get(@cloud_url+"#{uri}",auth_header)
 				  JSON.parse(resp)

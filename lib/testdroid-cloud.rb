@@ -2,7 +2,6 @@
 
 require 'json'
 require 'rest-client'
-require 'testdroid-cloud'
 require 'cloud_resource'
 require 'cloud_list_resource'
 require 'projects/projects'

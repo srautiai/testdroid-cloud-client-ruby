@@ -5,7 +5,7 @@ module Testdroid
 		end
 		class DeviceRun < CloudResource
 			def	initialize(uri, client, params= {})
-				super uri, client,"device-run", params
+				super uri, client,"deviceRun", params
 				@uri, @client = uri, client
 			end
 		end
