@@ -1,5 +1,4 @@
 #!/usr/bin/ruby
-
 require 'json'
 require 'rest-client'
 require 'cloud_resource'
@@ -10,4 +9,4 @@ require 'device_runs'
 require 'config'
 require 'testdroid_client'
 require 'user'
-
+require 'clusters'
