@@ -10,9 +10,9 @@ module Testdroid
 				@uri, @client = uri, client
 				sub_items :config, :runs
 			end
-			def run(instatest=true)
-				resp = @client.post("/projects/#{id}/run", "project/run/#{id}", {instatestMode:instatest})
-				Testdroid::Cloud::Run.new("/projects/#{id}/runs/#{resp['id']}", @client, resp)
+			def run(cluster_id= nil, instatest=true)
+				resp = @client.post("/projects/#{id}/run", "project/run/#{id}", {instatestMode:instatest, usedClusterId:cluster_id})
+				Testdroid::Cloud::Run.new("api/v1/projects/#{id}/runs/#{resp['id']}", @client, resp)
 			end
 			def uploadAPK(filename)
 				if !File.exist?(filename) 

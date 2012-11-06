@@ -22,9 +22,21 @@ module Testdroid
 			def get(uri, resource_name) 
 				
 				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
-				  resp = RestClient.get(@cloud_url+"#{uri}",auth_header)
+          		  begin 
+				    resp = RestClient.get(@cloud_url+"#{uri}",auth_header)
+				  rescue => e
+				  	$stderr.puts  e
+				  	return nil
+				  end
 				  JSON.parse(resp)
+		  end
+		  def download(uri, resource_name, file_name)
+				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
+				  auth_header['Accept'] = 'application/json'
+			File.open(file_name, "w") do |file|
+			   file.write(RestClient.get("#{uri}",auth_header))
 			end
+		  end
 			def post(uri, resource_name, params={}) 
 				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
 				  auth_header['Accept'] = 'application/json'

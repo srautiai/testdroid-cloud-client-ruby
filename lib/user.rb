@@ -5,7 +5,7 @@ module Testdroid
 			def initialize(uri, client, params={})
 				super uri, client,"users", params
 				
-				sub_items :projects
+				sub_items :projects, :clusters
 			end
 		end
   end

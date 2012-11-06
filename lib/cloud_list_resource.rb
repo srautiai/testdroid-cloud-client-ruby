@@ -17,8 +17,9 @@ module Testdroid
 				response = @client.get( @uri, @list_key)
 				
 				if response.is_a?(Array) 
-					class_list = response.each do |val|
-						@instance_class.new "#{@uri}/#{val[@instance_id_key]}", @client, val
+					class_list = []
+					response.each do |val|
+						class_list << @instance_class.new( "#{@uri}/#{val[@instance_id_key]}", @client, val)
 					end
 				end
 				class_list
