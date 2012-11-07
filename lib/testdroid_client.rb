@@ -33,7 +33,7 @@ module Testdroid
 		  def download(uri, resource_name, file_name)
 				  auth_header =  get_auth_header(@username, @api_key ,random_string(), resource_name)
 				  auth_header['Accept'] = 'application/json'
-			File.open(file_name, "w") do |file|
+			File.open(file_name, "w+b") do |file|
 			   file.write(RestClient.get("#{uri}",auth_header))
 			end
 		  end
