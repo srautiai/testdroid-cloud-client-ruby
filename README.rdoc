@@ -1,14 +1,12 @@
 = testdroid-cloud
 
-* {Homepage}[https://rubygems.org/gems/testdroid_cloud]
-* {Documentation}[http://rubydoc.info/gems/testdroid_cloud/frames]
+* {Homepage}[https://cloud.testdroid.com]
+* {Documentation}[http://docs.testdroid.com/]
 * {Email}[mailto:sakari.rautiainen at bitbar.com]
 
 == Description
 
-TODO: Description
-
-== Features
+Ruby library for Testdroid Cloud API
 
 == Examples
 
