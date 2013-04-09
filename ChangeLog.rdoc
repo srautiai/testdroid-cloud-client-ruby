@@ -1,3 +1,12 @@
+=== 0.1.2 / 2013-04-08
+* Added option to run project using device ids
+* Added Devices class to fetch all enabled devices
+
+=== 0.1.1 / 2013-04-09
+
+* Fixed project files
+* added gem file
+
 === 0.1.0 / 2012-10-20
 
 * Initial release:
