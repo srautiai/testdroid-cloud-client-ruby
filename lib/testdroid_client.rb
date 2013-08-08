@@ -6,16 +6,23 @@ module Testdroid
 
 	module Cloud
 		class Client
+			attr_accessor :logger
 			API_VERSION = 'api/v1'
 			CLOUD_ENDPOINT='https://cloud.testdroid.com'
 			USERS_ENDPOINT='https://users.testdroid.com'
-			def initialize(username, password, cloud_url=CLOUD_ENDPOINT, users_url=USERS_ENDPOINT, api_key = nil)  
+			def initialize(username, password, cloud_url=CLOUD_ENDPOINT, users_url=USERS_ENDPOINT, api_key = nil, logger = Logger.new(STDOUT))  
 				# Instance variables  
 				@username = username  
 				@password = password  
 				@cloud_url = cloud_url
 				@users_url = users_url
 				@api_key = api_key
+				
+				if(@logger.nil?) 
+					@logger = Logger.new(STDOUT)
+					@logger.info("Logger is not defined => output to STDOUT")
+				end
+				
 				
 				
 			end   
@@ -25,7 +32,7 @@ module Testdroid
 				  begin 
 					resp = RestClient.get(@cloud_url+"#{uri}",auth_header)
 				  rescue => e
-					$stderr.puts "Failed to get resource #{resource_name} #{e}"
+					@logger.error "Failed to get resource #{resource_name} #{e}"
 					return nil
 				  end
 				  JSON.parse(resp)
@@ -43,7 +50,7 @@ module Testdroid
 				  begin 
 				  	resp = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",params, auth_header)
 				  rescue => e
-				  	$stderr.puts  e
+				  	@logger.error e
 				  	return nil
 				  end
 				  JSON.parse(resp)
@@ -58,7 +65,7 @@ module Testdroid
 				begin 
 					response = RestClient.post(@cloud_url+"/#{API_VERSION}#{uri}",  {:file => File.new(filename), :multipart => true,  }, auth_header)
 				 rescue => e
-				  	$stderr.puts  e
+				  	@logger.error e
 				  	return nil
 				end
 				JSON.parse(response)
@@ -92,7 +99,7 @@ module Testdroid
 				end
 				user = JSON.parse(resp)
 				if(user.nil?) 
-					$stderr.puts "Couldn't authorize" 
+					@logger.error "Couldn't authorize" 
 					return nil
 				end
 				@api_key =  user['secretApiKey']

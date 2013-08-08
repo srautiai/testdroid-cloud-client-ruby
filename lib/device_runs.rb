@@ -10,21 +10,21 @@ module Testdroid
 			end
       def download_scrshots_zip(file_name="screenshots.zip")
         if(screenshots_u_r_i.nil? || screenshots_u_r_i.empty? )
-        	puts "Screenshots are not available"
+        	@client.logger.warn( "Screenshots are not available")
         	return nil
         end
         @client.download(screenshots_u_r_i, "screenshots.zip", file_name)
       end
       def download_junit(file_name="junit.xml")
       	if(junit_u_r_i.nil? || junit_u_r_i.empty? )
-        	puts "Junit result is not available"
+        	@client.logger.warn( "Junit result is not available")
         	return nil
         end
         @client.download(junit_u_r_i, "junit XML", file_name)
       end
       def download_logcat(file_name="logcat.txt")
         if(log_u_r_i.nil? || log_u_r_i.empty? )
-        	puts "Logcat output is not available"
+        	@client.logger.warn( "Logcat output is not available")
         	return nil
         end
         @client.download(log_u_r_i, "log", file_name)

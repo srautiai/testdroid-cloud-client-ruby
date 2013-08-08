@@ -19,7 +19,7 @@ module Testdroid
 			end
 			def uploadAPK(filename)
 				if !File.exist?(filename) 
-					$stderr.puts "Invalid filename"
+					@client.logger.error( "Invalid filename")
 					return
 				end
 				@client.upload("/projects/#{id}/apks/application",id, filename) 
